@@ -1,0 +1,245 @@
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #fff;
+} 
+
+#preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #f2f2f2;
+    border-top: 6px solid #56829e ;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+} 
+
+@-webkit-keyframes animate-preloader {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    } 
+    
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+} 
+
+@keyframes animate-preloader {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    }
+ 
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    }
+} 
+
+body {
+    overflow: hidden;
+}
+
+h3 {
+    display: inline;
+}
+
+#flag {
+    width:auto;
+    height:30px !important;
+    padding-bottom:10px;
+}
+
+select[type="search"] {
+    position:absolute;
+    z-index: 2;
+    left:70px;
+    top:10px;
+	height:30px;
+	width:25em;
+	border-radius: 10px;
+	padding:5px;
+	padding-left:10px;
+	background-color: white;
+	color:black;
+    border:thin solid #565656;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+	outline:none;
+}
+
+select[type="search"]:focus {
+	border:thin solid orange;
+}
+
+.container {
+    width:100%;
+    height:100%;
+}
+
+
+#mapid { 
+    position: absolute;
+    left: 0px;
+    width:100%;
+    height:600px;
+    z-index: -1;
+}
+
+.info { 
+    padding: 6px 8px; 
+    font: 14px/16px Arial, Helvetica, sans-serif; 
+    background: white; 
+    background: rgba(255,255,255,0.8); 
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2); 
+    border-radius: 5px; 
+} 
+.info h4 { 
+    margin: 0 0 5px; 
+    color: #777; 
+}
+
+  #autoSuggest {
+    display: block;
+    position: absolute;
+    z-index: 101;
+  }
+
+  .box {
+    z-index: 100;
+    width: 20vw;
+    height: 30vh;
+    padding: 6px 8px; 
+    font: 14px/16px Arial, Helvetica, sans-serif; 
+    background: white; 
+    background: rgba(255,255,255,0.8); 
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2); 
+    border-radius: 5px; 
+    position: absolute;
+    bottom: 2%;
+    left: 40%;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    min-width: 200px;
+    min-height: 350px;
+  }
+  
+  .wave {
+    opacity: 0.3;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    background: rgb(147, 217, 229);
+    width: 500px;
+    height: 500px;
+    margin-left: -250px;
+    margin-top: -250px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 3000ms infinite linear;
+    z-index: 1;
+  }
+  
+  .wave.-three {
+    animation: drift 5000ms infinite linear;
+    z-index: 2 !important;
+    opacity: 0.2;
+  }
+  
+  .wave.-two {
+    animation: drift 7000ms infinite linear;
+    opacity: 0.1;
+    z-index: 3 !important;
+  }
+  
+  .box:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  @keyframes drift {
+    from {
+      transform: rotate(0deg);
+    }
+    from {
+      transform: rotate(360deg);
+    }
+  }
+
+  .detail {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    height: 45%;
+    z-index: 4;
+  }
+  
+  .location {
+    text-align: center;
+    font-weight: 800;
+    font-size: 80%;
+  }
+  
+  .date {
+    text-align: center;
+    margin-top: 5%;
+    color: lighten(grey, 10%);
+    font-size: 70%;
+  }
+  
+  .temp {
+    margin-top: 10%;
+    text-align: center;
+    font-size: 80%;
+  }
+  
+  .weathercon {
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+  }
+  
+  @media (max-width: 600px) {
+    .box {
+      width: 20vw;
+      height: 10vh;
+    }
+  
+    .wave {
+      top: 115%;
+    }
+  
+    .weathercon {
+      font-size: 5em;
+    }
+  
+    .detail {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-height: 500px) {
+    .box {
+      height: 20vh;
+    }
+  
+    .wave {
+      top: 115%;
+    }
+  }
