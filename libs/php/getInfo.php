@@ -204,6 +204,8 @@
 	$str = file_get_contents('../../countries_small.geo.json');
 	$json = json_decode($str, true);
 
+	$result['type'] = "FeatureCollection";
+
 	foreach ($json['features'] as $country) {
 		if ($country['id'] == $_REQUEST['country']) {
 			$result['feature'] = $country;

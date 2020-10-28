@@ -62,10 +62,11 @@ h3 {
 }
 
 select[type="search"] {
-    position:absolute;
-    z-index: 2;
-    left:70px;
-    top:10px;
+  position:absolute;
+  max-width: 70%;
+  z-index: 2;
+  left:70px;
+  top:10px;
 	height:30px;
 	width:25em;
 	border-radius: 10px;
@@ -73,8 +74,8 @@ select[type="search"] {
 	padding-left:10px;
 	background-color: white;
 	color:black;
-    border:thin solid #565656;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+  border:thin solid #565656;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
 	outline:none;
 }
 
@@ -91,6 +92,7 @@ select[type="search"]:focus {
 #mapid { 
     position: absolute;
     left: 0px;
+    right: 0px;
     width:100%;
     height:600px;
     z-index: -1;
@@ -127,7 +129,7 @@ select[type="search"]:focus {
     border-radius: 5px; 
     position: absolute;
     bottom: 2%;
-    left: 40%;
+    right:2%;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
     min-width: 200px;
@@ -242,4 +244,33 @@ select[type="search"]:focus {
     .wave {
       top: 115%;
     }
+  }
+
+  .view-box {
+    z-index: 102;
+    top: 30%;
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    bottom: 2%;
+    display: block;
+    padding: 6px 8px; 
+    font: 14px/16px Arial, Helvetica, sans-serif; 
+    background: white; 
+    background: rgba(255,255,255,0.8); 
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2); 
+    border-radius: 5px; 
+    position: absolute; 
+    overflow: scroll;
+    transform: translate3d(0, 0, 0);
+    min-height: 100px;
+  }
+
+
+  .wiki-title {
+    display: inline;
+  }
+
+  .wiki-photo {
+    display: inline;
   }
