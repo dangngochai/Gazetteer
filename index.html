@@ -27,6 +27,10 @@
 		<script src="libs/vendors/src/easy-button.js"></script>
 		<!--FontAwesom-->
 		<link rel="stylesheet" href="libs/vendors/fontawesome/css/all.css">
+		<!--MarkerCluster-->
+		<link rel="stylesheet" href="libs/vendors/markercluster/dist/MarkerCluster.css">
+		<link rel="stylesheet" href="libs/vendors/markercluster/dist/MarkerCluster.Default.css">
+		<script src="libs/vendors/markercluster/dist/leaflet.markercluster.js"></script>
 	</head>
 
 	<body>
@@ -41,23 +45,71 @@
 			<!--show leaflet map -->
 			<div id="mapid"></div>	
 		</div>
-		<div class='box'>
-			<div class='wave -one'></div>
-			<div class='wave -two'></div>
-			<div class='wave -three'></div>
-			<div class="weathercon"></div>
-			<div class="detail">
-			  <h2 class="location">SUNNY VILLAGE</h2>
-			  <p class="date">MONDAY | SEP 01 | 12:00</p>
-			  <h1 class="temp">25 &deg;C | 77 &deg;F</h1>
+		<div class="weather-box">
+			<div class='box' id="box1">
+				<div class='wave -one'></div>
+				<div class='wave -two'></div>
+				<div class='wave -three'></div>
+				<div class="weathercon" id="weathercon1"></div>
+				<div class="detail">
+				<h2 class="location" id="location1">SUNNY VILLAGE</h2>
+				<p class="date" id="date1">MONDAY | SEP 01 </p> 
+				<h1 class="temp" id="temp1">25 &deg;C | 77 &deg;F</h1>
+				</div>
+			</div>
+			<div class='box' id="box2">
+				<div class='wave -one'></div>
+				<div class='wave -two'></div>
+				<div class='wave -three'></div>
+				<div class="weathercon" id="weathercon2"></div>
+				<div class="detail">
+				<h2 class="location" id="location2">SUNNY VILLAGE</h2>
+				<p class="date" id="date2">MONDAY | SEP 01 </p> 
+				<h1 class="temp" id="temp2">25 &deg;C | 77 &deg;F</h1>
+				</div>
+			</div>
+			<div class='box' id="box3">
+				<div class='wave -one'></div>
+				<div class='wave -two'></div>
+				<div class='wave -three'></div>
+				<div class="weathercon" id="weathercon3"></div>
+				<div class="detail">
+				<h2 class="location" id="location3">SUNNY VILLAGE</h2>
+				<p class="date" id="date3">MONDAY | SEP 01 </p> 
+				<h1 class="temp" id="temp3">25 &deg;C | 77 &deg;F</h1>
+				</div>
+			</div>
+			<div class='box' id="box4">
+				<div class='wave -one'></div>
+				<div class='wave -two'></div>
+				<div class='wave -three'></div>
+				<div class="weathercon" id="weathercon4"></div>
+				<div class="detail">
+				<h2 class="location" id="location4">SUNNY VILLAGE</h2>
+				<p class="date" id="date4">MONDAY | SEP 01 </p>
+				<h1 class="temp" id="temp4">25 &deg;C | 77 &deg;F</h1>
+				</div>
+			</div>
+			<div class='box' id="box5">
+				<div class='wave -one'></div>
+				<div class='wave -two'></div>
+				<div class='wave -three'></div>
+				<div class="weathercon" id="weathercon5"></div>
+				<div class="detail">
+				<h2 class="location" id="location5">SUNNY VILLAGE</h2>
+				<p class="date" id="date5">MONDAY | SEP 01 </p> 
+				<h1 class="temp" id="temp5">25 &deg;C | 77 &deg;F</h1>
+				</div>
 			</div>
 		</div>
 
 		<div class="view-box">
 			<h1>Country Wiki</h1>
-			<hr style="margin:5px 0px"></hr>
-			<ul class="page-list" id="new">
-			</ul>
+			<div class="wiki">
+				<hr style="margin:5px 0px"></hr>
+				<ul class="page-list" id="new">
+				</ul>
+			</div>
 		</div>
 		<!--scripts -->
 		<script type="application/javascript" src="libs/vendors/jquery/jquery-2.2.3.min.js"></script>

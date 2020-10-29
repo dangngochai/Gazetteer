@@ -235,11 +235,13 @@
 	$result['feature']['properties']['cases'] = $decode2['data']['cases']['infections'];
 	$result['feature']['properties']['deaths'] = $decode2['data']['cases']['deaths'];
 	$result['feature']['properties']['rate'] = $decode2['data']['cases']['mortalityRate'];
-	$result['feature']['properties']['temp'] = $decode3['current']['temp'];
-	$result['feature']['properties']['pressure'] = $decode3['current']['pressure'];
-	$result['feature']['properties']['humidity'] = $decode3['current']['humidity'];
-	$result['feature']['properties']['windSpeed'] = $decode3['current']['wind_speed'];
-	$result['feature']['properties']['weather'] = $decode3['current']['weather'][0]['main'];
+	for ($x = 1; $x <= 5; $x++) {
+		$result['feature']['properties']['date'][$x] = $decode3['daily'][$x]['dt'];
+		$result['feature']['properties']['temp'][$x] = $decode3['daily'][$x]['temp']['day'];
+		$result['feature']['properties']['windSpeed'][$x] = $decode3['daily'][$x]['wind_speed'];
+		$result['feature']['properties']['weather'][$x] = $decode3['daily'][$x]['weather'][0]['main'];
+	  };
+	
 	$result['feature']['properties']['cities'] = $decode4['geonames'];
 
 	$output['status']['code'] = "200";

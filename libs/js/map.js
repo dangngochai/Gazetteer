@@ -7,6 +7,8 @@ var geojson;
 var cities_list;
 var id;
 var layerGroup = L.layerGroup();
+var markers = L.markerClusterGroup();
+var marker;
 var capitalMarker = L.ExtraMarkers.icon({
     shape: 'circle',
     markerColor: 'orange',
@@ -20,7 +22,6 @@ var normalMarker = L.ExtraMarkers.icon({
     shape: 'circle',
     markerColor: 'cyan',
     prefix: 'fa',
-    icon: 'fa-spinner',
     iconColor: '#fff',
     iconRotate: 1,
     extraClasses: 'fa-spin',
@@ -37,6 +38,57 @@ var wikihtml = '';
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+    var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+
+    var year = a.getFullYear();
+    var month = months[a.getMonth()].toUpperCase().substring(0, 3);
+    var day = weekday[a.getDay()].toUpperCase();
+    var date = a.getDate();
+    var time = day + ' ' + date + ' ' + month + ' ' + year ;
+
+
+    var months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+  
+    return time;
+ }
 
 //set max bounds for the map
 var southWest = L.latLng(-89.98155760646617, -180),
@@ -66,7 +118,7 @@ var toggle = L.easyButton({
     states: [{
         stateName: 'add-markers',
         icon: 'fa-map-marker',
-        title: 'Add markers',
+        title: 'Show city',
         onClick: function(control) {
             mymap.addLayer(layerGroup);
             control.state('remove-markers');
@@ -107,6 +159,7 @@ var weather = L.easyButton({
     }]
 });
 
+//set a toggle button to show wiki info of a country
 $('.view-box').hide();
 var wiki = L.easyButton({
     states: [{
@@ -133,87 +186,55 @@ var wiki = L.easyButton({
 
 //function to display weather of a country
 function display(data) {
-    var countryW = data.name.toUpperCase();
-    var temp =
-    Math.round(Math.round(data.temp) -273.15) + 
-      "&deg; C | " + data.weather;
-    var date = new Date();
+    var i;
+    for (i = 1; i <= 5; i++) {
+    
+        var countryW = data.name.toUpperCase();
+        var temp =
+        Math.round(Math.round(data.temp[i]) -273.15) + 
+        "&deg; C | " + data.temp[i] + "&deg; K";
+        var d= timeConverter(data.date[i]);
 
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-
-    var weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-
-    var font_color;
-    var bg_color;
-    if (Math.round(Math.round(data.temp) -273.15) > 25) {
-      font_color = "#d36326";
-      bg_color = "#f3f5d2";
-    } else {
-      font_color = "#44c3de";
-      bg_color = "#eff3f9";
+        var font_color;
+        var bg_color;
+        if (Math.round(Math.round(data.temp[i]) -273.15) > 25) {
+        font_color = "#d36326";
+        bg_color = "#f3f5d2";
+        } else {
+        font_color = "#44c3de";
+        bg_color = "#eff3f9";
+        }
+        //change the icon and color depend on weather condition
+        if ((data.weather[i]).includes('Cloud')) {
+            $("#"+ "weathercon" + i).html(
+            "<i class='fas fa-cloud' style='color: #44c3de;'></i>"      
+        );
+        } else if ((data.weather[i]).includes('Rain')) {
+            $("#"+ "weathercon" + i).html(
+            "<i class='fas fa-cloud-rain' style='color: #6a7a7d;'></i>" 
+        );
+        } else if ((data.weather[i]).includes('Snow')) {
+            $("#"+ "weathercon" + i).html(
+            "<i class='fas fa-snowflake' style='color: #ffffff;'></i>" 
+        );
+        } else if ((data.weather[i]).includes('Thunder')) {
+            $("#"+ "weathercon" + i).html(
+            "<i class='fas fa-bolt' style='color: #f5f25b;'></i>" 
+        );
+        } else {
+            $("#"+ "weathercon" + i).html(
+                "<i class='fas fa-sun' style='color: #d36326;'></i>"
+        );
+        };
+            
+        $(".location").html(countryW);
+        $("#"+ "temp" + i).html(temp);
+        $("#"+ "date" + i).html(d);
+        $("#"+ "detail" + i).html(data.weather[i]);
+        $("#"+ "box" + i).css("background", bg_color);
+        $("#"+ "location" + i).css("color", font_color);
+        $("#"+ "temp" + i).css("color", font_color);
     }
-    //change the icon and color depend on weather condition
-    if ((data.weather).includes('Cloud')) {
-      $(".weathercon").html(
-        "<i class='fas fa-cloud' style='color: #44c3de;'></i>"      
-      );
-    } else if ((data.weather).includes('Rain')) {
-      $(".weathercon").html(
-        "<i class='fas fa-cloud-rain' style='color: #6a7a7d;'></i>" 
-      );
-    } else if ((data.weather).includes('Snow')) {
-        $(".weathercon").html(
-          "<i class='fas fa-snowflake' style='color: #ffffff;'></i>" 
-      );
-    } else if ((data.weather).includes('Thunder')) {
-        $(".weathercon").html(
-          "<i class='fas fa-bolt' style='color: #f5f25b;'></i>" 
-      );
-    } else {
-        $(".weathercon").html(
-            "<i class='fas fa-sun' style='color: #d36326;'></i>"
-      );
-    };
-         
-
-    var minutes =
-      date.getMinutes() < 11 ? "0" + date.getMinutes() : date.getMinutes();
-    var date =
-      weekday[date.getDay()].toUpperCase() +
-      " | " +
-      months[date.getMonth()].toUpperCase().substring(0, 3) +
-      " " +
-      date.getDate() +
-      " | " +
-      date.getHours() +
-      ":" +
-      minutes;
-    $(".location").html(countryW);
-    $(".temp").html(temp);
-    $(".date").html(date);
-    $(".box").css("background", bg_color);
-    $(".location").css("color", font_color);
-    $(".temp").css("color", font_color);
 };
 
 
@@ -247,7 +268,7 @@ $(document).ready(function() {
             type: 'POST',
             dataType: 'json',
             success: function(result) {
-                
+                result.sort((a, b) => a.name.localeCompare(b.name));
                var $dropdown = $("#searchBox");
                 $.each(result, function() {
                     $dropdown.append($("<option />").val(this.code).text(this.name));
@@ -325,15 +346,22 @@ info.addTo(mymap);
 
 //function to zoom in and show marker for the selected country
 function onEachFeature(feature, layer) {
+    $('.box').hide();
+    weather.state('weather-forecast'); 
+    $('.view-box').hide();
+    wiki.state('open-wiki');
+    $('.info').show();
     mymap.fitBounds(layer.getBounds());
     info.update(layer.feature.properties);
     layerGroup.clearLayers();
+    markers.clearLayers();
     toggle.addTo(mymap);
     weather.addTo(mymap);
     wiki.addTo(mymap);
     display(layer.feature.properties);
     $('#new').html('');
     cities_list = feature.properties.cities;
+    //add info for marker pop up for each city
     cities_list.forEach(function (city) {
         let html = `
                 <h3><strong>${city.name}  </strong></h3><br>
@@ -344,11 +372,17 @@ function onEachFeature(feature, layer) {
                 <br style="clear:both">`;
         
         if (city['name']==feature.properties.capital) {
-            addMarkerPopup(html,L.marker([city['lat'],city['lng']], {icon: capitalMarker}).addTo(layerGroup));
+            marker = L.marker([city['lat'],city['lng']],{icon: capitalMarker});
+            addMarkerPopup(html,marker);
+            markers.addLayer(marker);
+            
         } else {
-            addMarkerPopup(html,L.marker([city['lat'],city['lng']], {icon: normalMarker}).addTo(layerGroup));
+            marker = L.marker([city['lat'],city['lng']],{icon: normalMarker});
+            addMarkerPopup(html,marker);
+            markers.addLayer(marker);
         }
 
+    //fetch data for wiki info for each city in the country and add to viewbox
         var url = "https://en.wikipedia.org/w/api.php"; 
 
         var params = {
@@ -366,7 +400,10 @@ function onEachFeature(feature, layer) {
         fetch(url)
             .then(function(response){return response.json();})
             .then(function(response) {
-                var pages = response.query.pages;
+                if (response.query) {
+                    var pages = response.query.pages;
+                };
+                
                 wikihtml='';
                 var wikilist = [];
                 for (var page in pages) {
@@ -390,15 +427,10 @@ function onEachFeature(feature, layer) {
             .catch(function(error){console.log(error);});
  
      });
+     layerGroup.addLayer(markers);
    
 }
 
-
-
-//function to add marker to show detail info about countries
-function addMarker(latlng,markerIcon) {
-    return L.marker(latlng, {icon: markerIcon}).addTo(mymap);
-};
 
 //function to add popup to show detail info about countries to the marker when user clicks onto the marker
 function addMarkerPopup(text, marker, open=false) {
@@ -448,7 +480,6 @@ async function getCountryName(_lat, _lon) {
 
 //to find latitude and longtitude where user click on the map
 mymap.on('click', function(e) {
-    console.log(e.latlng.lat,e.latlng.lng);
     showCountry(e.latlng.lat,e.latlng.lng);
 });
 
@@ -466,7 +497,6 @@ function getData(country) {
 			
 			$(".leaflet-interactive").remove();
 
-            console.log(result);
 			geojson = L.geoJson(result['feature'], {
 				style: style,
 				onEachFeature: onEachFeature
