@@ -120,18 +120,20 @@ select[type="search"]:focus {
   .weather-box{
     z-index: 100;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    margin-left: 40%;
+    flex-direction: column;
     position: absolute;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
     bottom:2%;
-    width: 100%;
+    width: 20%;
+    max-height: 40%;
   }
 
   .box {
     z-index: 100;
     width: 20vw;
-    height: 30vh;
+    height: 40vh;
     padding: 6px 8px; 
     font: 14px/16px Arial, Helvetica, sans-serif; 
     background: white; 
@@ -140,8 +142,8 @@ select[type="search"]:focus {
     border-radius: 5px; 
     bottom: 2%;
     transform: translate3d(0, 0, 0);
-    min-width: 200px;
-    min-height: 350px;
+    min-height: 40vh;
+    overflow: hidden;
   }
   
   .wave {
@@ -203,6 +205,7 @@ select[type="search"]:focus {
     text-align: center;
     font-weight: 800;
     font-size: 80%;
+    margin-bottom: 15%;
   }
   
   .date {
@@ -223,18 +226,22 @@ select[type="search"]:focus {
     height: 55%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     font-size: 3em;
   }
   
   @media (max-width: 600px) {
     .weather-box {
       width: 100vw;
-      overflow: hidden;
+      margin-left:30%;
+    }
+
+    .wiki-title {
+      font-size: 1.5rem;
     }
     .box {
-      width: 20vw;
-      height: 10vh;
+      width: 40vw;
+      height: 20vh;
     }
   
     .wave {
@@ -242,38 +249,55 @@ select[type="search"]:focus {
     }
   
     .weathercon {
-      font-size: 5em;
+      font-size: 2.5em;
     }
   
     .detail {
       font-size: 1.5rem;
     }
+
+    .view-box {
+      width: 50vw;
+    }
+
   }
   
   @media (max-height: 500px) {
 
     .weather-box {
       width: 100vw;
-      overflow: hidden;
+      margin-left:30%;
+    }
+
+    .wiki-title {
+      font-size: 1.5rem;
     }
 
     .box {
-      height: 20vh;
+      width: 40vw;
+      height: 30vh;
+    }
+
+    .weathercon {
+      font-size: 2.5em;
     }
   
     .wave {
       top: 115%;
     }
+
   }
 
   .view-box {
     z-index: 102;
-    top: 30%;
-    width: 80%;
-    left: 10%;
-    right: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 30%;
+    height: 50%;
     bottom: 2%;
-    padding: 6px 8px; 
+    padding: 6px 3px; 
     font: 14px/16px Arial, Helvetica, sans-serif; 
     background: white; 
     background: rgba(255,255,255,0.8); 
@@ -282,6 +306,7 @@ select[type="search"]:focus {
     position: absolute; 
     transform: translate3d(0, 0, 0);
     min-height: 100px;
+    min-width: 200px;
     overflow: hidden;
   }
 
@@ -289,6 +314,7 @@ select[type="search"]:focus {
     width: 100%;
     height: 100%;
     overflow: scroll;
+    padding: 0;
   }
 
 
@@ -300,3 +326,5 @@ select[type="search"]:focus {
   .wiki-photo {
     display: inline;
   }
+
+ 

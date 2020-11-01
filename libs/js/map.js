@@ -13,7 +13,7 @@ var capitalMarker = L.ExtraMarkers.icon({
     shape: 'circle',
     markerColor: 'orange',
     prefix: 'fa',
-    icon: 'fa-university',
+    icon: 'fa-star',
     iconColor: '#fff',
     number: '',
     svg: false,
@@ -22,9 +22,8 @@ var normalMarker = L.ExtraMarkers.icon({
     shape: 'circle',
     markerColor: 'cyan',
     prefix: 'fa',
+    icon: 'fa-home',
     iconColor: '#fff',
-    iconRotate: 1,
-    extraClasses: 'fa-spin',
     number: '',
     svg: false,
 });
@@ -143,6 +142,8 @@ var weather = L.easyButton({
         stateName: 'weather-forecast',
         onClick: function(control) {
             control.state('remove-weather');
+            $('.view-box').hide();
+            wiki.state('open-wiki');
             $('.info').hide();
             $('.box').show();
             },
@@ -169,6 +170,7 @@ var wiki = L.easyButton({
             control.state('close-wiki');
             $('.info').hide();
             $('.box').hide();
+            weather.state('weather-forecast'); 
             $('.view-box').show();
             },
         title: 'Show wiki'
@@ -312,6 +314,7 @@ function showCountry(_lat, _lon) {
                 id = country['code'];
             }
         });
+        $('#searchBox').val(id);
         getData(id);
     });
 }
