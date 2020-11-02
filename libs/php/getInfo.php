@@ -197,7 +197,9 @@
 		$data=curl_exec($ch);
 
 		curl_close($ch);
-		return $data;
+		if ($data != null) {
+			return $data;
+			}	
 	}
 
 	//read country's boundary from json file

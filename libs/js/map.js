@@ -255,11 +255,15 @@ if(navigator.geolocation) {
         userLng = position.coords.longitude;
 
         //place a marker on the users setLocation
-        mymap.setView([userLat, userLng], 5);
-        showCountry(userLat, userLng);
+        mymap.setView([51, 0], 5);
+        showCountry(51, 0);
 
     })
- };  
+ } else {
+    mymap.setView([userLat, userLng], 5);
+    showCountry(userLat, userLng);
+ };
+ 
 
 
 

@@ -63,7 +63,7 @@ h3 {
 
 select[type="search"] {
   position:absolute;
-  max-width: 70%;
+  max-width: 50%;
   z-index: 2;
   left:70px;
   top:10px;
