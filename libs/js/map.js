@@ -28,8 +28,7 @@ var normalMarker = L.ExtraMarkers.icon({
     svg: false,
 });
 
-var country_list = [{"name":"Afghanistan","code":"AFG","id":"004"},{"name":"Albania","code":"ALB","id":"008"},{"name":"Algeria","code":"DZA","id":"012"},{"name":"Andorra","code":"AND","id":"020"},{"name":"Angola","code":"AGO","id":"024"},{"name":"Antarctica","code":"ATA","id":"010"},{"name":"Argentina","code":"ARG","id":"032"},{"name":"Armenia","code":"ARM","id":"051"},{"name":"Australia","code":"AUS","id":"036"},{"name":"Austria","code":"AUT","id":"040"},{"name":"Azerbaijan","code":"AZE","id":"031"},{"name":"Bahamas","code":"BHS","id":"044"},{"name":"Bahrain","code":"BHR","id":"048"},{"name":"Bangladesh","code":"BGD","id":"050"},{"name":"Barbados","code":"BRB","id":"052"},{"name":"Belarus","code":"BLR","id":"112"},{"name":"Belgium","code":"BEL","id":"056"},{"name":"Belize","code":"BLZ","id":"084"},{"name":"Benin","code":"BEN","id":"204"},{"name":"Bermuda","code":"BMU","id":"060"},{"name":"Bhutan","code":"BTN","id":"064"},{"name":"Bolivia (Plurinational State of)","code":"BOL","id":"068"},{"name":"Bosnia and Herzegovina","code":"BIH","id":"070"},{"name":"Botswana","code":"BWA","id":"072"},{"name":"Brazil","code":"BRA","id":"076"},{"name":"Brunei Darussalam","code":"BRN","id":"096"},{"name":"Bulgaria","code":"BGR","id":"100"},{"name":"Burkina Faso","code":"BFA","id":"854"},{"name":"Burundi","code":"BDI","id":"108"},{"name":"Cambodia","code":"KHM","id":"116"},{"name":"Cameroon","code":"CMR","id":"120"},{"name":"Canada","code":"CAN","id":"124"},{"name":"Central African Republic","code":"CAF","id":"140"},{"name":"Chad","code":"TCD","id":"148"},{"name":"Chile","code":"CHL","id":"152"},{"name":"China","code":"CHN","id":"156"},{"name":"Colombia","code":"COL","id":"170"},{"name":"Congo","code":"COG","id":"178"},{"name":"Congo, Democratic Republic of the","code":"COD","id":"180"},{"name":"Costa Rica","code":"CRI","id":"188"},{"name":"Côte d'Ivoire","code":"CIV","id":"384"},{"name":"Croatia","code":"HRV","id":"191"},{"name":"Cuba","code":"CUB","id":"192"},{"name":"Cyprus","code":"CYP","id":"196"},{"name":"Czechia","code":"CZE","id":"203"},{"name":"Denmark","code":"DNK","id":"208"},{"name":"Djibouti","code":"DJI","id":"262"},{"name":"Dominica","code":"DMA","id":"212"},{"name":"Dominican Republic","code":"DOM","id":"214"},{"name":"Ecuador","code":"ECU","id":"218"},{"name":"Egypt","code":"EGY","id":"818"},{"name":"El Salvador","code":"SLV","id":"222"},{"name":"Equatorial Guinea","code":"GNQ","id":"226"},{"name":"Eritrea","code":"ERI","id":"232"},{"name":"Estonia","code":"EST","id":"233"},{"name":"Eswatini","code":"SWZ","id":"748"},{"name":"Ethiopia","code":"ETH","id":"231"},{"name":"Falkland Islands (Malvinas)","code":"FLK","id":"238"},{"name":"Fiji","code":"FJI","id":"242"},{"name":"Finland","code":"FIN","id":"246"},{"name":"France","code":"FRA","id":"250"},{"name":"French Guiana","code":"GUF","id":"254"},{"name":"French Southern Territories","code":"ATF","id":"260"},{"name":"Gabon","code":"GAB","id":"266"},{"name":"Gambia","code":"GMB","id":"270"},{"name":"Georgia","code":"GEO","id":"268"},{"name":"Germany","code":"DEU","id":"276"},{"name":"Ghana","code":"GHA","id":"288"},{"name":"Greece","code":"GRC","id":"300"},{"name":"Greenland","code":"GRL","id":"304"},{"name":"Guatemala","code":"GTM","id":"320"},{"name":"Guinea","code":"GIN","id":"324"},{"name":"Guinea-Bissau","code":"GNB","id":"624"},{"name":"Guyana","code":"GUY","id":"328"},{"name":"Haiti","code":"HTI","id":"332"},{"name":"Honduras","code":"HND","id":"340"},{"name":"Hungary","code":"HUN","id":"348"},{"name":"Iceland","code":"ISL","id":"352"},{"name":"India","code":"IND","id":"356"},{"name":"Indonesia","code":"IDN","id":"360"},{"name":"Iran (Islamic Republic of)","code":"IRN","id":"364"},{"name":"Iraq","code":"IRQ","id":"368"},{"name":"Ireland","code":"IRL","id":"372"},{"name":"Israel","code":"ISR","id":"376"},{"name":"Italy","code":"ITA","id":"380"},{"name":"Jamaica","code":"JAM","id":"388"},{"name":"Japan","code":"JPN","id":"392"},{"name":"Jordan","code":"JOR","id":"400"},{"name":"Kazakhstan","code":"KAZ","id":"398"},{"name":"Kenya","code":"KEN","id":"404"},{"name":"Korea (Democratic People's Republic of)","code":"PRK","id":"408"},{"name":"Korea, Republic of","code":"KOR","id":"410"},{"name":"Kuwait","code":"KWT","id":"414"},{"name":"Kyrgyzstan","code":"KGZ","id":"417"},{"name":"Laos People's Democratic Republic","code":"LAO","id":"418"},{"name":"Latvia","code":"LVA","id":"428"},{"name":"Lebanon","code":"LBN","id":"422"},{"name":"Lesotho","code":"LSO","id":"426"},{"name":"Liberia","code":"LBR","id":"430"},{"name":"Libya","code":"LBY","id":"434"},{"name":"Lithuania","code":"LTU","id":"440"},{"name":"Luxembourg","code":"LUX","id":"442"},{"name":"Madagascar","code":"MDG","id":"450"},{"name":"Malawi","code":"MWI","id":"454"},{"name":"Malaysia","code":"MYS","id":"458"},{"name":"Maldives","code":"MDV","id":"462"},{"name":"Mali","code":"MLI","id":"466"},{"name":"Malta","code":"MLT","id":"470"},{"name":"Mauritania","code":"MRT","id":"478"},{"name":"Mexico","code":"MEX","id":"484"},{"name":"Moldova, Republic of","code":"MDA","id":"498"},{"name":"Monaco","code":"MCO","id":"492"},{"name":"Mongolia","code":"MNG","id":"496"},{"name":"Montenegro","code":"MNE","id":"499"},{"name":"Montserrat","code":"MSR","id":"500"},{"name":"Morocco","code":"MAR","id":"504"},{"name":"Mozambique","code":"MOZ","id":"508"},{"name":"Myanmar","code":"MMR","id":"104"},{"name":"Namibia","code":"NAM","id":"516"},{"name":"Nauru","code":"NRU","id":"520"},{"name":"Nepal","code":"NPL","id":"524"},{"name":"Netherlands","code":"NLD","id":"528"},{"name":"New Caledonia","code":"NCL","id":"540"},{"name":"New Zealand","code":"NZL","id":"554"},{"name":"Nicaragua","code":"NIC","id":"558"},{"name":"Niger","code":"NER","id":"562"},{"name":"Nigeria","code":"NGA","id":"566"},{"name":"Niue","code":"NIU","id":"570"},{"name":"North Macedonia","code":"MKD","id":"807"},{"name":"Norway","code":"NOR","id":"578"},{"name":"Oman","code":"OMN","id":"512"},
-{"name":"Pakistan","code":"PAK","id":"586"},{"name":"Palestine, State of","code":"PSE","id":"275"},{"name":"Panama","code":"PAN","id":"591"},{"name":"Papua New Guinea","code":"PNG","id":"598"},{"name":"Paraguay","code":"PRY","id":"600"},{"name":"Peru","code":"PER","id":"604"},{"name":"Philippines","code":"PHL","id":"608"},{"name":"Poland","code":"POL","id":"616"},{"name":"Portugal","code":"PRT","id":"620"},{"name":"Puerto Rico","code":"PRI","id":"630"},{"name":"Qatar","code":"QAT","id":"634"},{"name":"Réunion","code":"REU","id":"638"},{"name":"Romania","code":"ROU","id":"642"},{"name":"Russian Federation","code":"RUS","id":"643"},{"name":"Rwanda","code":"RWA","id":"646"},{"name":"Samoa","code":"WSM","id":"882"},{"name":"San Marino","code":"SMR","id":"674"},{"name":"Saudi Arabia","code":"SAU","id":"682"},{"name":"Senegal","code":"SEN","id":"686"},{"name":"Serbia","code":"SRB","id":"688"},{"name":"Sierra Leone","code":"SLE","id":"694"},{"name":"Singapore","code":"SGP","id":"702"},{"name":"Slovakia","code":"SVK","id":"703"},{"name":"Slovenia","code":"SVN","id":"705"},{"name":"Solomon Islands","code":"SLB","id":"090"},{"name":"Somalia","code":"SOM","id":"706"},{"name":"South Africa","code":"ZAF","id":"710"},{"name":"South Sudan","code":"SSD","id":"728"},{"name":"Spain","code":"ESP","id":"724"},{"name":"Sri Lanka","code":"LKA","id":"144"},{"name":"Sudan","code":"SDN","id":"729"},{"name":"Suriname","code":"SUR","id":"740"},{"name":"Sweden","code":"SWE","id":"752"},{"name":"Switzerland","code":"CHE","id":"756"},{"name":"Syrian Arab Republic","code":"SYR","id":"760"},{"name":"Taiwan","code":"TWN","id":"158"},{"name":"Tajikistan","code":"TJK","id":"762"},{"name":"Tanzania, United Republic of","code":"TZA","id":"834"},{"name":"Thailand","code":"THA","id":"764"},{"name":"Timor-Leste","code":"TLS","id":"626"},{"name":"Togo","code":"TGO","id":"768"},{"name":"Tonga","code":"TON","id":"776"},{"name":"Trinidad and Tobago","code":"TTO","id":"780"},{"name":"Tunisia","code":"TUN","id":"788"},{"name":"Turkey","code":"TUR","id":"792"},{"name":"Turkmenistan","code":"TKM","id":"795"},{"name":"Uganda","code":"UGA","id":"800"},{"name":"Ukraine","code":"UKR","id":"804"},{"name":"United Arab Emirates","code":"ARE","id":"784"},{"name":"United Kingdom","code":"GBR","id":"826"},{"name":"United States of America","code":"USA","id":"840"},{"name":"Uruguay","code":"URY","id":"858"},{"name":"Uzbekistan","code":"UZB","id":"860"},{"name":"Vanuatu","code":"VUT","id":"548"},{"name":"Venezuela (Bolivarian Republic of)","code":"VEN","id":"862"},{"name":"Vietnam","code":"VNM","id":"704"},{"name":"Western Sahara","code":"ESH","id":"732"},{"name":"Yemen","code":"YEM","id":"887"},{"name":"Zambia","code":"ZMB","id":"894"},{"name":"Zimbabwe","code":"ZWE","id":"716"}]
+var country_list;
 
 var wikihtml = '';
 
@@ -273,13 +272,14 @@ $(document).ready(function() {
             url: "libs/php/getCountryName.php",
             type: 'POST',
             dataType: 'json',
+            async: false,
             success: function(result) {
                 result.sort((a, b) => a.name.localeCompare(b.name));
                var $dropdown = $("#searchBox");
                 $.each(result, function() {
                     $dropdown.append($("<option />").val(this.code).text(this.name));
                 });
-  
+                country_list = result;
                                    
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -311,17 +311,17 @@ $(document).ready(function() {
 
 //get data for country at clicked location by latitude and longtitude
 function showCountry(_lat, _lon) {
-    getCountryName(_lat, _lon).then(countryName => {
+    var countryName = getCountryName(_lat, _lon);
         //find country code from latitude and longtityde
-        country_list.forEach(function (country) {
-           if (country['name'].includes(countryName)) {
-                id = country['code'];
-            }
-        });
-        $('#searchBox').val(id);
-        getData(id);
+    country_list.forEach(function (country) {
+        if (country['name'].includes(countryName)) {
+            id = country['code'];
+        }
     });
-}
+    $('#searchBox').val(id);
+    getData(id);
+};
+
 //style the boundary for each country
 function style(feature) {
     return {
@@ -464,26 +464,41 @@ function addMarkerPopup(text, marker, open=false) {
 };
 
 //function to find country name from latitude and longtitude
-async function getCountryName(_lat, _lon) {
+function getCountryName(lat, lng) {
+    var countryN;
+	$.ajax({
+		url: "libs/php/getCountryLatlng.php",
+		type: 'POST',
+		dataType: 'json',
+		data: {
+            lat: lat,
+            lng: lng
+        },
+        async: false,
+		success: function(result) {
+            
+             countryN = result.countryName;
+															
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			//error code
+			alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
 
-    try {
-      let response = await fetch(`http://api.geonames.org/countryCodeJSON?lat=${_lat}&lng=${_lon}&username=gradian`);
-  
-      if(response.ok) {
-        let json = await response.json();
-  
-        if(json.countryName != undefined && json.countryName != null) {
-          return json.countryName;
-        }
-      }
-      else {
-        throw "bad response from server!";
-      }
-    }
-    catch(error) {
-        console.log(error);
-    }
-  }
+			$('#result').html('<p>status code: '+jqXHR.status+'</p><p>errorThrown: ' + errorThrown + '</p><p>jqXHR.responseText:</p><div>'+jqXHR.responseText + '</div>');
+			console.log('jqXHR:');
+			console.log(jqXHR);
+			console.log('textStatus:');
+			console.log(textStatus);
+			console.log('errorThrown:');
+			console.log(errorThrown);
+		}
+    }); 
+    if (countryN != undefined && countryN != null) {
+        return countryN;
+    }  
+}
+
+   
 
 //to find latitude and longtitude where user click on the map
 mymap.on('click', function(e) {
