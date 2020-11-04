@@ -23,6 +23,21 @@
     animation: animate-preloader 1s linear infinite;
 } 
 
+#loader {
+  z-index: 9999 !important;
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #f2f2f2;
+  border-top: 6px solid #56829e ;
+  border-radius: 50%;
+  display: none;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite; /* Safari */
+  animation: animate-preloader 1s linear infinite;
+}
+
 @-webkit-keyframes animate-preloader {
     0% {
     -webkit-transform: rotate(0deg);

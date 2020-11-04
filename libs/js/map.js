@@ -88,6 +88,15 @@ function timeConverter(UNIX_timestamp){
     return time;
  }
 
+ //Show loading screen
+ function loading(onLoad) {
+    if(onLoad == false) {
+      $('#loader').css('display', 'none');
+    } else {
+      $('#loader').css('display', 'inline-block');
+    }
+  }
+
 //set max bounds for the map
 var southWest = L.latLng(-89.98155760646617, -180),
 northEast = L.latLng(89.99346179538875, 180);
@@ -502,12 +511,14 @@ function getCountryName(lat, lng) {
 
 //to find latitude and longtitude where user click on the map
 mymap.on('click', function(e) {
+    loading(true);
     showCountry(e.latlng.lat,e.latlng.lng);
 });
 
 
 //to get data from php call for each country alpha 3 code
 function getData(country) {
+    loading(true);
 	$.ajax({
 		url: "libs/php/getInfo.php",
 		type: 'POST',
@@ -522,7 +533,8 @@ function getData(country) {
 			geojson = L.geoJson(result['feature'], {
 				style: style,
 				onEachFeature: onEachFeature
-			}).addTo(mymap);
+            }).addTo(mymap);
+            loading(false);
 
 						
 							
